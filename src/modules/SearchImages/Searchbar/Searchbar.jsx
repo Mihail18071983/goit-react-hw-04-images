@@ -114,6 +114,7 @@ const Searchbar = ({ onSubmit }) => {
 //   }
 // }
 
+
 export default Searchbar;
 
 Searchbar.propTypes = {
