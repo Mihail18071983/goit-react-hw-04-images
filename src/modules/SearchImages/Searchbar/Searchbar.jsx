@@ -15,7 +15,6 @@ const Searchbar = ({ onSubmit }) => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    console.log(search)
     if (search.trim().toLowerCase() === '') {
       return toast.warn('Enter correct search!');
     }
