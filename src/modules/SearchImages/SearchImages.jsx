@@ -1,4 +1,5 @@
 import { Component } from 'react';
+// import { useState } from 'react';
 
 import Searchbar from './Searchbar/Searchbar';
 import ImageGallery from './ImageGallery/ImageGallery';
@@ -10,7 +11,12 @@ import { toast } from 'react-toastify';
 
 import styles from '../SearchImages/SearchImages.module.css';
 
+// const SearchImages = () => {
+//    const [search, setSearch] = useState('');
+// }
+
 class SearchImages extends Component {
+ 
   state = {
     search: '',
     items: [],
@@ -48,7 +54,7 @@ class SearchImages extends Component {
     }
   }
 
-  searchImages = ({ search }) => {
+  searchImages = ( search ) => {
     if (search !== this.state.search) {
       this.setState({ search, items: [], page: 1 });
     } else toast('you have already entered this query!');
