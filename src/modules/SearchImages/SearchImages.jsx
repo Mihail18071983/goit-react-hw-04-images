@@ -21,9 +21,15 @@ const SearchImages = () => {
   const [err, setErr] = useState(null);
   const [imgDetails, setimgDetails] = useState(null);
 
-  const fetchImages = async (query, page) => {
-    try {
-      const { hits, totalHits } = await fetchData(query, page);
+ 
+
+  useEffect(() => {
+    if (searchQuery === '') { return }
+    
+     const fetchImages = async () => {
+       try {
+      setLoading(true);
+      const { hits, totalHits } = await fetchData(searchQuery, page);
       if (hits.length === 0) {
         toast.error('No result found!');
       }
@@ -35,11 +41,7 @@ const SearchImages = () => {
       setLoading(false);
     }
   };
-
-  useEffect(() => {
-    if (searchQuery==='') {return}
-    setLoading(true);
-    fetchImages(searchQuery,page)
+    fetchImages()
     
   }, [page, searchQuery]);
 
