@@ -5,11 +5,14 @@ import { toast } from 'react-toastify';
 
 import styles from '../Searchbar/Searchbar.module.css';
 
+import initialState from './initialState';
+
 const Searchbar = ({ onSubmit }) => {
-  const [search, setSearch] = useState('');
+  const [searchQuery, setSearchQuery] = useState({...initialState});
 
   const handleChange = (e) => { 
-    setSearch(e.target.value);
+   const {name, value}=e.target
+    setSearchQuery(prevState=>{return{...prevState, [name]:value}});
   };
 
   const handleSubmit = e => {
@@ -19,8 +22,10 @@ const Searchbar = ({ onSubmit }) => {
     }
 
     onSubmit(search);
-    setSearch('');
+    setSearchQuery('');
   };
+
+  const {search}=searchQuery
 
       return (
       <header className={styles.Searchbar}>
