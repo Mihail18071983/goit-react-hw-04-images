@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 
 import Searchbar from './Searchbar/Searchbar';
 import ImageGallery from './ImageGallery/ImageGallery';
@@ -53,19 +53,19 @@ const SearchImages = () => {
     } else toast('you have already entered this query!');
   };
 
-  const loadMore = () => {
-    setPage(page+1);
-  };
+  const loadMore = useCallback(() => {
+    setPage(prevPage=>prevPage+1);
+  },[]);
 
-  const openModal = (largeImageURL, tags) => {
+  const openModal = useCallback((largeImageURL, tags) => {
     setShowModal(true);
     setimgDetails({ largeImageURL, tags });
-  };
+  },[]);
 
-  const closeModal = () => {
+  const closeModal = useCallback(() => {
     setShowModal(false);
     setimgDetails(null);
-  };
+  },[]);
  
   const body = document.querySelector('body');
   const isImages = Boolean(items.length);
