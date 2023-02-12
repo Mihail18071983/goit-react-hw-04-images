@@ -20,3 +20,4 @@ export const fetchData = async(q, page = 1)=> {
     });
     return data;
 }
+
